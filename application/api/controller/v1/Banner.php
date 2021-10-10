@@ -3,26 +3,38 @@
 
 namespace app\api\controller\v1;
 
-use app\api\validate\TestValidate;
-use think\Validate;
+use app\api\controller\BaseController;
+use app\api\validate\IDMustBePositiveInt;
+use app\api\model\Banner as BannerModel;
+use app\lib\exception\BannerMissException;
+use think\Exception;
+
 
 class Banner
 {
-    /**
-     * 获取Banner信息
-     * @url     /banner/:id
-     * @http    get
-     * @param int $id banner id
-     * @return  array of banner item , code 200
-     * @throws  MissException
-     */
+
     public function getBanner($id)  // http://tp5cms.io/banner/1
     {
-        // vaalidate 有2种用法。 1.独立验证  2.验证器
 
         (new IDMustBePositiveInt())->goCheck();
         $banner = BannerModel::getBannerByID($id);
+        if(!$banner){
+            throw new BannerMissException();
+        }
         return $banner;
+        // vaalidate 有2种用法。 1.独立验证  2.验证器
+//        try {
+//            $banner = BannerModel::getBannerByID($id);
+//        }
+//        catch (Excegtion $ex) {
+//            $err = [
+//                'error_code' => 10001,
+//                'msg' => $ex->getMessage()
+//            ];
+//            return json($err, 400);
+//        }
+//        return $banner;
+
 
     }
 }

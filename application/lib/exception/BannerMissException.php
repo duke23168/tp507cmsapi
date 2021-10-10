@@ -14,6 +14,6 @@ namespace app\lib\exception;
 class BannerMissException extends BaseException
 {
     public $code = 404;
-    public $msg = 'global:your required resource are not found';
+    public $msg = '你请求的Banner不存在！';
     public $errorCode = 400000;
 }
