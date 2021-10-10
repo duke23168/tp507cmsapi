@@ -17,7 +17,7 @@ return [
     // 应用命名空间
     'app_namespace'          => 'app',
     // 应用调试模式
-    'app_debug'              => false,
+    'app_debug'              => true,
     // 应用Trace
     'app_trace'              => false,
     // 应用模式状态
@@ -164,11 +164,12 @@ return [
 
     'log'                    => [
         // 日志记录方式，内置 file socket 支持扩展
-        'type'  => 'File',
+//        'type'  => 'File',
+        'type'  => 'test',
         // 日志保存目录
         'path'  => LOG_PATH,
         // 日志记录级别
-        'level' => [],
+        'level' => ['sql'],
     ],
 
     // +----------------------------------------------------------------------

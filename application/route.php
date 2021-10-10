@@ -26,5 +26,6 @@ use think\Route;
 //Route::post( 'hello/:id','sample/Test/hello');
 //Route::post();
 //Route::any();
-Route::get( 'banner/:id','api/v1.Banner/getBanner');
+//Route::get( 'api/v1/banner/:id','api/v1.Banner/getBanner');
+Route::get('api/:version/banner/:id', 'api/:version.Banner/getBanner');     //注意APi post 的用Get方式
 

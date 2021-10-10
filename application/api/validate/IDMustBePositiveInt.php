@@ -10,8 +10,7 @@ namespace app\api\validate;
 class IDMustBePositiveInt extends BaseValidate
 {
     protected $rule = [
-        'id' => 'require|isPositiveInteger',
-        'num'=>'in:1,2,3'   // http://tp5cms.io/banner/0.1?num=4
+        'id' => 'require|isPositiveInteger'
     ];
 
     protected function isPositiveInteger($value, $rule='', $data='', $field='')

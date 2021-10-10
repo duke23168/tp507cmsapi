@@ -13,27 +13,16 @@ use think\Exception;
 class Banner
 {
 
-    public function getBanner($id)  // http://tp5cms.io/banner/1
+    public function getBanner($id)  // //注意APi post 的用Get方式  http://tp5cms.io/banner/1
     {
 
         (new IDMustBePositiveInt())->goCheck();
         $banner = BannerModel::getBannerByID($id);
         if(!$banner){
-            throw new Exception('内部错误');    //BannerMissException 走自定义的内部错误    Exception 走TP的内部错误
+            //throw new Exception('内部错误');    //BannerMissException 走自定义的内部错误    Exception 走TP的内部错误
+            throw new BannerMissException();
         }
-        return $banner;
-        // vaalidate 有2种用法。 1.独立验证  2.验证器
-//        try {
-//            $banner = BannerModel::getBannerByID($id);
-//        }
-//        catch (Excegtion $ex) {
-//            $err = [
-//                'error_code' => 10001,
-//                'msg' => $ex->getMessage()
-//            ];
-//            return json($err, 400);
-//        }
-//        return $banner;
+        return json($banner);
 
 
     }
