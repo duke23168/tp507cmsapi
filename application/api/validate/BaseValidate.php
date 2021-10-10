@@ -11,15 +11,13 @@ namespace app\api\validate;
 use app\api\service\Token;
 use app\lib\enum\ScopeEnum;
 use app\lib\exception\ForbiddenException;
+use app\lib\exception\ParameterException;
 use app\lib\exception\TokenException;
 use think\Exception;
 use think\Request;
 use think\Validate;
 
-/**
- * Class BaseValidate
- * 验证类的基类
- */
+
 class BaseValidate extends Validate
 {
     public function goCheck()
@@ -29,12 +27,14 @@ class BaseValidate extends Validate
         $params = $request->param();
         $result=$this->check($params);
         if (!$result) {
-            $error=$this->error;
-            throw new Exception($error);
+            $e = new ParameterException();
+            $e->msg=$this->error;
+            throw $e;
+//            $error=$this->error;
+//            throw new Exception($error);
         }
         return true;
     }
-
 
     protected function isPositiveInteger($value, $rule='', $data='', $field='')
     {
