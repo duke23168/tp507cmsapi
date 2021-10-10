@@ -19,7 +19,7 @@ class Banner
         (new IDMustBePositiveInt())->goCheck();
         $banner = BannerModel::getBannerByID($id);
         if(!$banner){
-            throw new BannerMissException();
+            throw new Exception('内部错误');    //BannerMissException 走自定义的内部错误    Exception 走TP的内部错误
         }
         return $banner;
         // vaalidate 有2种用法。 1.独立验证  2.验证器
