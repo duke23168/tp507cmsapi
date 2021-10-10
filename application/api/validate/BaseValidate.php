@@ -25,24 +25,18 @@ class BaseValidate extends Validate
         //必须设置contetn-type:application/json
         $request = Request::instance();
         $params = $request->param();
-        $result=$this->check($params);
+        $result=$this->batch()->check($params);
         if (!$result) {
-            $e = new ParameterException();
-            $e->msg=$this->error;
+            $e = new ParameterException([
+                // $this->error有一个问题，并不是一定返回数组，需要判断
+                'msg' =>  $this->error,
+            ]);
             throw $e;
-//            $error=$this->error;
-//            throw new Exception($error);
         }
         return true;
     }
 
-    protected function isPositiveInteger($value, $rule='', $data='', $field='')
-    {
-        if (is_numeric($value) && is_int($value + 0) && ($value + 0) > 0) {
-            return true;
-        }
-        return $field . '必须是正整数';
-    }
+
 
     
 
