@@ -17,12 +17,17 @@ class Banner
     {
 
         (new IDMustBePositiveInt())->goCheck();
-        $banner = BannerModel::getBannerByID($id);
-        if(!$banner){
+
+        $banner =BannerModel::get($id);       //模型的静态方式调用    get, find (有返回数据), all, select
+//        $banner =new BannerModel();         //实例化再调用
+//        $banner =$banner->get($id);
+//        $banner = BannerModel::getBannerByID($id);
+        if (!$banner) {
             //throw new Exception('内部错误');    //BannerMissException 走自定义的内部错误    Exception 走TP的内部错误
             throw new BannerMissException();
         }
-        return json($banner);
+//        return json($banner);
+        return $banner;
 
 
     }

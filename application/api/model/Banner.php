@@ -10,13 +10,13 @@ use think\exception\DbException;
 use think\Model;
 
 
-class Banner
+class Banner extends Model
 {
+//    protected $table = 'Category';
     public static function getBannerById($id)
     {
 //        $result= Db::query('select * from banner_item where banner_id=?',[$id]);
 //        return $result;
-
 //        $result = Db::table('banner_item')
 //            ->where('banner_id', '=', $id)
 //            ->select();
@@ -29,6 +29,7 @@ class Banner
                 $query->where('banner_id', '=',$id);
             })
             ->select();
+                //ORM Obeject Relation Mapping 对象关系映射
         return $result;
 
     }
