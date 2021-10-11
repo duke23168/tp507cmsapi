@@ -12,9 +12,12 @@ use think\Model;
 
 class Banner extends Model
 {
-//    protected $table = 'Category';
+    public function items(){
+        return $this->hasMany('BannerItem','banner_id','id');   //通过BannerItem模型的banner_id,与id关联
+    }
     public static function getBannerById($id)
     {
+
 //        $result= Db::query('select * from banner_item where banner_id=?',[$id]);
 //        return $result;
 //        $result = Db::table('banner_item')

@@ -18,7 +18,8 @@ class Banner
 
         (new IDMustBePositiveInt())->goCheck();
 
-        $banner =BannerModel::get($id);       //模型的静态方式调用    get, find (有返回数据), all, select
+        $banner =BannerModel::with(['items','items.img'])->find($id);       //模型的静态方式调用    get, find (有返回数据), all, select
+        //如果是多模型关联，那么with(['items','xxx'])  在Banner 模型里，就再添加多一个模型xxx.
 //        $banner =new BannerModel();         //实例化再调用
 //        $banner =$banner->get($id);
 //        $banner = BannerModel::getBannerByID($id);
