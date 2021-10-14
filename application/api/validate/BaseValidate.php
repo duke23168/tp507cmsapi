@@ -13,7 +13,6 @@ use app\lib\enum\ScopeEnum;
 use app\lib\exception\ForbiddenException;
 use app\lib\exception\ParameterException;
 use app\lib\exception\TokenException;
-use think\Exception;
 use think\Request;
 use think\Validate;
 
@@ -36,7 +35,14 @@ class BaseValidate extends Validate
         return true;
     }
 
-
+    protected function isPositiveInteger($value, $rule='', $data='', $field='')
+    {
+        if (is_numeric($value) && is_int($value + 0) && ($value + 0) > 0) {
+            return true;
+        }
+        return false;
+//        return $field . '必须是正整数';
+    }
 
     
 

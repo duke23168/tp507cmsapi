@@ -27,5 +27,12 @@ use think\Route;
 //Route::post();
 //Route::any();
 //Route::get( 'api/v1/banner/:id','api/v1.Banner/getBanner');
-Route::get('api/:version/banner/:id', 'api/:version.Banner/getBanner');     //注意APi post 的用Get方式
+Route::get('api/:version/banner/:id', 'api/:version.Banner/getBanner');     //注意APi post 的用Get方式  :version  动态的
 
+Route::get('api/:version/theme', 'api/:version.theme/getSimpleList');
+Route::get('api/:version/theme/:id', 'api/:version.theme/getComplexOne');
+
+Route::get('api/:version/product/recent', 'api/:version.product/getRecent');
+Route::get('api/:version/product/by_category', 'api/:version.product/getAllInCategory');
+
+Route::get('api/:version/category/all', 'api/:version.category/getAllcategories');
