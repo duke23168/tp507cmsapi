@@ -32,7 +32,17 @@ Route::get('api/:version/banner/:id', 'api/:version.Banner/getBanner');     //æ³
 Route::get('api/:version/theme', 'api/:version.theme/getSimpleList');
 Route::get('api/:version/theme/:id', 'api/:version.theme/getComplexOne');
 
-Route::get('api/:version/product/recent', 'api/:version.product/getRecent');
-Route::get('api/:version/product/by_category', 'api/:version.product/getAllInCategory');
+
+//Route::get('api/:version/product/by_category', 'api/:version.product/getAllInCategory');
+//Route::get('api/:version/product/:id', 'api/:version.product/getOne',[],['id'=>'\d+']);
+//Route::get('api/:version/product/recent', 'api/:version.product/getRecent');
+
+Route::group('api/:version/product',function(){
+    Route::get('/by_category','api/:version.product/getAllInCategory');
+    Route::get('/:id', 'api/:version.product/getOne',[],['id'=>'\d+']);
+    Route::get('/recent', 'api/:version.product/getRecent');
+});
 
 Route::get('api/:version/category/all', 'api/:version.category/getAllcategories');
+
+Route::post('api/:version/token/user', 'api/:version.Token/getToken');
